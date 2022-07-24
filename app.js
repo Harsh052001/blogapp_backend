@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import blogrouter from "./routes/blog-routes";
 import router from "./routes/user-routes";
 import cors from "cors";
+import 'dotenv/config'
 
 const app = express();
 
@@ -11,9 +12,11 @@ app.use(express.json())
 app.use("/api/user", router);
 app.use("/api/blog", blogrouter);
 
+
+
 mongoose
     .connect(
-    "mongodb+srv://Hasrh:kiJBWHz4c4hpsyci@cluster0.4hli9.mongodb.net/BlogApplication?retryWrites=true&w=majority"
+    process.env.URL
     )
     .then(()=>app.listen(5000))
     .then(()=>
